@@ -12,6 +12,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.EnumType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Table(name = "allocation")
@@ -38,6 +40,10 @@ public class Allocation {
 
 	@Column(name = "courseId", nullable = false)
 	private Long courseId;
+
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "courseId", nullable = false, insertable = false, updatable = false)
+	private Course course;
 
 	public Long getId() {
 		return id;
@@ -85,6 +91,14 @@ public class Allocation {
 
 	public void setCourseId(Long courseId) {
 		this.courseId = courseId;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
 	}
 
 }

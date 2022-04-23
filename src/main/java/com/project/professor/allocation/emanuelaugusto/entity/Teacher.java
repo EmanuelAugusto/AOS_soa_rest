@@ -1,6 +1,8 @@
 package com.project.professor.allocation.emanuelaugusto.entity;
 
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,8 +20,12 @@ public class Teacher {
 	private String name;
 	@Column(name = "cpf", nullable = false, length = 11)
 	private String cpf;
-	@Column(name = "departmantId", nullable = false)
-	private Long departmantId;
+	@Column(name = "departmentId", nullable = false)
+	private Long departmentId;
+
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "departmentId", nullable = false, insertable = false, updatable = false)
+	private Departament department;
 
 	public Long getId() {
 		return id;
@@ -45,11 +51,19 @@ public class Teacher {
 		this.cpf = cpf;
 	}
 
-	public Long getDepartmantId() {
-		return departmantId;
+	public Long getDepartmentId() {
+		return departmentId;
 	}
 
-	public void setDepartmantId(Long departmantId) {
-		this.departmantId = departmantId;
+	public void setDepartmentId(Long departmentId) {
+		this.departmentId = departmentId;
+	}
+
+	public Departament getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Departament department) {
+		this.department = department;
 	}
 }
