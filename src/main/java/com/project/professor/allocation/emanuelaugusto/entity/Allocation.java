@@ -45,6 +45,10 @@ public class Allocation {
 	@JoinColumn(name = "courseId", nullable = false, insertable = false, updatable = false)
 	private Course course;
 
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "teacherId", nullable = false, insertable = false, updatable = false)
+	private Teacher teacher;
+
 	public Long getId() {
 		return id;
 	}
@@ -99,6 +103,14 @@ public class Allocation {
 
 	public void setCourse(Course course) {
 		this.course = course;
+	}
+
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
 	}
 
 }

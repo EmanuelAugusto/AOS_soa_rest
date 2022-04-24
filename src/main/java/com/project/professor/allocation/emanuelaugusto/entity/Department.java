@@ -4,15 +4,15 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity
-@Table(name = "departament")
-public class Departament {
+@Table(name = "department")
+public class Department {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +21,8 @@ public class Departament {
 	@Column(name = "name", unique = true, nullable = false)
 	private String name;
 
-	// @OneToMany(mappedBy = "departament")
-	// private List<Teacher> teachers;
+	@OneToMany(mappedBy = "department")
+	private List<Teacher> teachers;
 
 	public Long getId() {
 		return id;
@@ -40,12 +40,12 @@ public class Departament {
 		this.name = name;
 	}
 
-	// public List<Teacher> getTeachers() {
-	// return teachers;
-	// }
+	public List<Teacher> getTeachers() {
+		return teachers;
+	}
 
-	// public void setTeachers(List<Teacher> teachers) {
-	// this.teachers = teachers;
-	// }
+	public void setTeachers(List<Teacher> teachers) {
+		this.teachers = teachers;
+	}
 
 }

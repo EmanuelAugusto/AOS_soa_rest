@@ -18,14 +18,16 @@ public class Teacher {
 
 	@Column(name = "name", nullable = false)
 	private String name;
+
 	@Column(name = "cpf", nullable = false, length = 11)
 	private String cpf;
+
 	@Column(name = "departmentId", nullable = false)
 	private Long departmentId;
 
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "departmentId", nullable = false, insertable = false, updatable = false)
-	private Departament department;
+	private Department department;
 
 	public Long getId() {
 		return id;
@@ -51,19 +53,19 @@ public class Teacher {
 		this.cpf = cpf;
 	}
 
-	public Long getDepartmentId() {
+	public Long getdepartmentId() {
 		return departmentId;
 	}
 
-	public void setDepartmentId(Long departmentId) {
+	public void setdepartmentId(Long departmentId) {
 		this.departmentId = departmentId;
 	}
 
-	public Departament getDepartment() {
+	public Department getdepartment() {
 		return department;
 	}
 
-	public void setDepartment(Departament department) {
+	public void setdepartment(Department department) {
 		this.department = department;
 	}
 }
