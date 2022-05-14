@@ -68,4 +68,15 @@ public class Teacher {
 	public void setdepartment(Department department) {
 		this.department = department;
 	}
+
+	@Override
+	public String toString() {
+		return "Professor{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", cpf='" + cpf + '\'' +
+				", departmentId=" + departmentId +
+				", department=" + department +
+				'}';
+	}
 }

@@ -113,4 +113,17 @@ public class Allocation {
 		this.teacher = teacher;
 	}
 
+	@Override
+	public String toString() {
+		return "Allocation{" +
+				"id=" + id +
+				", dayOfWeek=" + day +
+				", startHour=" + start +
+				", endHour=" + end +
+				", professorId=" + teacherId +
+				", courseId=" + courseId +
+				", professor=" + teacher +
+				", course=" + course +
+				'}';
+	}
 }

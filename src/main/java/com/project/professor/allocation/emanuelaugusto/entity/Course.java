@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "course")
@@ -21,6 +23,7 @@ public class Course {
 	private String name;
 
 	@OneToMany(mappedBy = "course")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private List<Allocation> allocations;
 
 	public Long getId() {
@@ -45,6 +48,14 @@ public class Course {
 
 	public void setAllocations(List<Allocation> allocations) {
 		this.allocations = allocations;
+	}
+
+	@Override
+	public String toString() {
+		return "Course{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				'}';
 	}
 
 }

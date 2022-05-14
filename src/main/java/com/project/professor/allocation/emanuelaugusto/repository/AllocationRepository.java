@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface AllocationRepository extends JpaRepository<Allocation, Long> {
 
-    List<Allocation> findByProfessorId(Long professorId);
+    List<Allocation> findByTeacherId(Long professorId);
 
     List<Allocation> findByCourseId(Long courseId);
 }
