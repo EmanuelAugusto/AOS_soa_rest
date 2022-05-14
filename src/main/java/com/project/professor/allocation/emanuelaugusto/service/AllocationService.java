@@ -27,4 +27,21 @@ public class AllocationService {
 		return allocations;
 	}
 
+	public Allocation findById(Long id) {
+		Allocation allocation = this.allocationRepository.findById(id).orElse(null);
+
+		return allocation;
+	}
+
+	public Allocation save(Allocation allocation) {
+
+		Allocation allocationSave = allocationRepository.save(allocation);
+
+		return allocationSave;
+	}
+
+	public void deleteById(Long id) {
+		allocationRepository.deleteById(id);
+	}
+
 }

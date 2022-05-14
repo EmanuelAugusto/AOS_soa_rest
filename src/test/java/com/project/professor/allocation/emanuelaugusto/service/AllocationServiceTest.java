@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import com.project.professor.allocation.emanuelaugusto.entity.Allocation;
+
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
@@ -25,63 +28,49 @@ public class AllocationServiceTest {
         List<Allocation> allocations = allocationService.findAll();
 
         for (Allocation allocation : allocations) {
-            System.out.println(allocation);
+            System.out.println(allocation + "\n");
         }
     }
 
     @Test
-    public void findByProfessor() {
-        // Arrange
-
-        // Act
-
-        // Print
-    }
-
-    @Test
-    public void findByCourse() {
-        // Arrange
-
-        // Act
-
-        // Print
-    }
-
-    @Test
     public void findById() {
-        // Arrange
+        Allocation allocation = allocationService.findById(45L);
 
-        // Act
-
-        // Print
+        System.out.println("\n" + allocation + "\n");
     }
 
     @Test
     public void save() throws ParseException {
         // Arrange
+        Allocation allocation = new Allocation();
+        allocation.setId(null);
+        allocation.setDay(DayOfWeek.SUNDAY);
+        allocation.setStart(sdf.parse("17:00-0300"));
+        allocation.setEnd(sdf.parse("18:00-0300"));
+        allocation.setTeacherId(1L);
+        allocation.setCourseId(1L);
 
         // Act
+        allocation = allocationService.save(allocation);
 
         // Print
+        System.out.println(allocation);
     }
 
     @Test
     public void update() throws ParseException {
-        // Arrange
+        Allocation allocation = allocationService.findById(45L);
 
-        // Act
+        allocation.setId(allocation.getId());
+        allocation.setDay(DayOfWeek.WEDNESDAY);
+
+        allocation = allocationService.save(allocation);
 
     }
 
     @Test
     public void deleteById() {
-        // Arrange
-
-        // Act
+        allocationService.deleteById(35L);
     }
 
-    @Test
-    public void deleteAll() {
-        // Act
-    }
 }
