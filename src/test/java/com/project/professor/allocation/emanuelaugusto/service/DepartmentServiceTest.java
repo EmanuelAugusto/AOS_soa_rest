@@ -4,60 +4,60 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
-import com.project.professor.allocation.emanuelaugusto.entity.Teacher;
+import com.project.professor.allocation.emanuelaugusto.entity.Department;
 import java.text.ParseException;
 import java.util.List;
 
 @SpringBootTest
 @TestPropertySource(locations = "classpath:application.properties")
-public class TeacherServiceTest {
+public class DepartmentServiceTest {
 
     @Autowired
-    TeacherService teacherService;
+    DepartmentService departmentService;
 
     @Test
     public void findAll() {
 
-        List<Teacher> Teachers = teacherService.findAll();
+        List<Department> Departments = departmentService.findAll();
 
-        for (Teacher Teacher : Teachers) {
-            System.out.println(Teacher + "\n");
+        for (Department Department : Departments) {
+            System.out.println(Department + "\n");
         }
     }
 
     @Test
     public void findById() {
-        Teacher Teacher = teacherService.findById(45L);
+        Department Department = departmentService.findById(45L);
 
-        System.out.println("\n" + Teacher + "\n");
+        System.out.println("\n" + Department + "\n");
     }
 
     @Test
     public void save() throws ParseException {
 
-        Teacher Teacher = new Teacher();
-        Teacher.setId(null);
+        Department Department = new Department();
+        Department.setId(null);
         int random = 1 + (int) (Math.random() * 100);
-        Teacher.setName("Tecnologia" + random);
+        Department.setName("Tecnologia" + random);
 
         // Act
-        Teacher = teacherService.saveOrUpdate(Teacher);
+        Department = departmentService.saveOrUpdate(Department);
 
         // Print
-        System.out.println(Teacher.toString());
+        System.out.println(Department.toString());
 
     }
 
     @Test
     public void update() throws ParseException {
         try {
-            Teacher Teacher = teacherService.findById(1L);
+            Department Department = departmentService.findById(1L);
 
-            Teacher.setId(Teacher.getId());
+            Department.setId(Department.getId());
             int random = 1 + (int) (Math.random() * 100);
-            Teacher.setName("Tecnologia" + random);
+            Department.setName("Tecnologia" + random);
 
-            Teacher = teacherService.saveOrUpdate(Teacher);
+            Department = departmentService.saveOrUpdate(Department);
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -67,7 +67,7 @@ public class TeacherServiceTest {
 
     @Test
     public void deleteById() {
-        teacherService.deleteById(5L);
+        departmentService.deleteById(5L);
     }
 
 }
