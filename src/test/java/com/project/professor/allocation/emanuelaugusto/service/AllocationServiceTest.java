@@ -46,7 +46,7 @@ public class AllocationServiceTest {
             allocation.setStart(sdf.parse("17:00-0300"));
             allocation.setEnd(sdf.parse("18:00-0300"));
             allocation.setTeacherId(4L);
-            allocation.setCourseId(7L);
+            allocation.setCourseId(8L);
 
             // Act
             allocation = allocationService.save(allocation);

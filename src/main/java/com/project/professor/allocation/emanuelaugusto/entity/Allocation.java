@@ -15,8 +15,14 @@ import javax.persistence.TemporalType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
+import com.fasterxml.jackson.databind.ser.std.DateSerializer;
+import io.swagger.annotations.ApiModelProperty;
 
 @Entity
 @Table(name = "allocation")
@@ -31,10 +37,18 @@ public class Allocation {
 	@Column(name = "day", nullable = false)
 	private DayOfWeek day;
 
+	@ApiModelProperty(example = "19:00-0300")
+	@JsonFormat(pattern = "HH:mmZ")
+	@JsonSerialize(using = DateSerializer.class)
+	@JsonDeserialize(using = DateDeserializers.DateDeserializer.class)
 	@Column(name = "start", nullable = false)
 	@Temporal(TemporalType.TIME)
 	private Date start;
 
+	@ApiModelProperty(example = "19:00-0300")
+	@JsonFormat(pattern = "HH:mmZ")
+	@JsonSerialize(using = DateSerializer.class)
+	@JsonDeserialize(using = DateDeserializers.DateDeserializer.class)
 	@Column(name = "end", nullable = false)
 	@Temporal(TemporalType.TIME)
 	private Date end;
@@ -125,12 +139,12 @@ public class Allocation {
 	public String toString() {
 		return "Allocation{" +
 				"id=" + id +
-				", dayOfWeek=" + day +
-				", startHour=" + start +
-				", endHour=" + end +
-				", professorId=" + teacherId +
+				", day=" + day +
+				", start=" + start +
+				", end=" + end +
+				", teacherId=" + teacherId +
 				", courseId=" + courseId +
-				", professor=" + teacher +
+				", teacher=" + teacher +
 				", course=" + course +
 				'}';
 	}

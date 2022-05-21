@@ -90,8 +90,8 @@ public class AllocationRepositoryTest {
         allocation.setDay(DayOfWeek.SUNDAY);
         allocation.setStart(sdf.parse("17:00-0300"));
         allocation.setEnd(sdf.parse("18:00-0300"));
-        allocation.setTeacherId(4L);
-        allocation.setCourseId(1L);
+        allocation.setTeacherId(12L);
+        allocation.setCourseId(15L);
 
         // Act
         allocation = allocationRepository.save(allocation);

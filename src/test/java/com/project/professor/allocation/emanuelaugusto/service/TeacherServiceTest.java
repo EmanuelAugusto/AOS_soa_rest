@@ -39,6 +39,8 @@ public class TeacherServiceTest {
         Teacher.setId(null);
         int random = 1 + (int) (Math.random() * 100);
         Teacher.setName("Tecnologia" + random);
+        Teacher.setCpf("13455369" + random);
+        Teacher.setdepartmentId(4L);
 
         // Act
         Teacher = teacherService.saveOrUpdate(Teacher);
@@ -56,6 +58,8 @@ public class TeacherServiceTest {
             Teacher.setId(Teacher.getId());
             int random = 1 + (int) (Math.random() * 100);
             Teacher.setName("Tecnologia" + random);
+            Teacher.setCpf("13455369" + random);
+            Teacher.setdepartmentId(4L);
 
             Teacher = teacherService.saveOrUpdate(Teacher);
 

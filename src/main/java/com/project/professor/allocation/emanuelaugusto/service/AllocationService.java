@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.text.SimpleDateFormat;
 import com.project.professor.allocation.emanuelaugusto.entity.Allocation;
+import com.project.professor.allocation.emanuelaugusto.Exception.ExceptionConflictHours;
 
 @Service
 public class AllocationService {
@@ -49,6 +50,8 @@ public class AllocationService {
 
 	public Allocation save(Allocation allocation) throws Exception {
 
+		System.out.println(allocation.toString());
+		System.out.println("\n");
 		Boolean canSave = checkConflictOfAllocation(allocation);
 
 		if (canSave) {
@@ -56,7 +59,7 @@ public class AllocationService {
 
 			return allocationSave;
 		} else {
-			throw new Exception("Conflito de horários");
+			throw new Exception("time_conflict");
 		}
 
 	}
