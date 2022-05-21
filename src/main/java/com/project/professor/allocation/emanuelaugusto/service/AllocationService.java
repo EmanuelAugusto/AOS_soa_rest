@@ -4,6 +4,7 @@ import com.project.professor.allocation.emanuelaugusto.repository.AllocationRepo
 import com.project.professor.allocation.emanuelaugusto.repository.CourseRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.text.SimpleDateFormat;
 import com.project.professor.allocation.emanuelaugusto.entity.Allocation;
 
 @Service
@@ -33,11 +34,33 @@ public class AllocationService {
 		return allocation;
 	}
 
-	public Allocation save(Allocation allocation) {
+	private Boolean checkConflictOfAllocation(Allocation allocation) {
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 
-		Allocation allocationSave = allocationRepository.save(allocation);
+		List<Allocation> allocationget = allocationRepository.findConflict(allocation.getDay().toString(),
+				sdf.format(allocation.getStart().getTime()), sdf.format(allocation.getEnd().getTime()),
+				allocation.getTeacherId());
+		
+		if(allocationget.isEmpty()){
+			return true;
+		}else{
+			return false;
+		}
 
-		return allocationSave;
+	}
+
+	public Allocation save(Allocation allocation) throws Exception {
+
+		Boolean canSave = checkConflictOfAllocation(allocation);
+
+		if (canSave) {
+			Allocation allocationSave = allocationRepository.save(allocation);
+
+			return allocationSave;
+		} else {
+			throw new Exception("Conflito de horários");
+		}
+
 	}
 
 	public void deleteById(Long id) {
