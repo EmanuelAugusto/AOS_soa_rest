@@ -43,26 +43,6 @@ public class DepartmentRepositoryTest {
     }
 
     @Test
-    public void findByProfessorId() {
-        // Arrange
-
-        // Act
-
-        // Print
-
-    }
-
-    @Test
-    public void findByCourseId() {
-        // Arrange
-
-        // Act
-
-        // Print
-
-    }
-
-    @Test
     public void save_create() throws ParseException {
         Department department = new Department();
 
@@ -96,7 +76,7 @@ public class DepartmentRepositoryTest {
 
     @Test
     public void deleteAll() {
-        departamentRepository.deleteAll();
+        departamentRepository.deleteAllInBatch();
 
     }
 }

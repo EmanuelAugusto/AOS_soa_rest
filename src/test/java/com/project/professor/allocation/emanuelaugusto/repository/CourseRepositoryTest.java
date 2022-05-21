@@ -47,7 +47,7 @@ public class CourseRepositoryTest {
         Course course = new Course();
         course.setId(null);
         int random = 1 + (int) (Math.random() * 100);
-        course.setName("Mediciona" + random);
+        course.setName("Tecnologia" + random);
 
         course = courseRepository.save(course);
 
@@ -57,10 +57,10 @@ public class CourseRepositoryTest {
 
     @Test
     public void save_update() throws ParseException {
-        Course course = courseRepository.getById(1L);
+        Course course = courseRepository.getById(2L);
 
         int random = 1 + (int) (Math.random() * 100);
-        course.setName("Mediciona" + random);
+        course.setName("T.i" + random);
         course.setId(course.getId());
 
         course = courseRepository.save(course);
@@ -70,7 +70,7 @@ public class CourseRepositoryTest {
 
     @Test
     public void deleteById() {
-        courseRepository.deleteById(6L);
+        courseRepository.deleteById(3L);
 
     }
 

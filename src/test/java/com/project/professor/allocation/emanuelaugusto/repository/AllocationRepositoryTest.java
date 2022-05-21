@@ -37,14 +37,14 @@ public class AllocationRepositoryTest {
 
     @Test
     public void findById() {
-        Allocation allocation = allocationRepository.findById(17L).orElse(null);
+        Allocation allocation = allocationRepository.findById(5L).orElse(null);
 
         System.out.println(allocation.toString());
     }
 
     @Test
     public void findByTeacherId() {
-        List<Allocation> allocation = allocationRepository.findByTeacherId(1L);
+        List<Allocation> allocation = allocationRepository.findByTeacherId(4L);
 
         for (Allocation allocation2 : allocation) {
             System.out.println(allocation2.toString());
@@ -64,7 +64,7 @@ public class AllocationRepositoryTest {
 
     @Test
     public void save_update() throws ParseException {
-        Allocation allocation = allocationRepository.findById(17L).orElse(null);
+        Allocation allocation = allocationRepository.findById(5L).orElse(null);
 
         allocation.setId(allocation.getId());
         allocation.setDay(DayOfWeek.MONDAY);
@@ -76,7 +76,7 @@ public class AllocationRepositoryTest {
 
     @Test
     public void deleteById() {
-        Long id = 28L;
+        Long id = 6L;
 
         allocationRepository.deleteById(id);
 
@@ -90,7 +90,7 @@ public class AllocationRepositoryTest {
         allocation.setDay(DayOfWeek.SUNDAY);
         allocation.setStart(sdf.parse("17:00-0300"));
         allocation.setEnd(sdf.parse("18:00-0300"));
-        allocation.setTeacherId(1L);
+        allocation.setTeacherId(4L);
         allocation.setCourseId(1L);
 
         // Act

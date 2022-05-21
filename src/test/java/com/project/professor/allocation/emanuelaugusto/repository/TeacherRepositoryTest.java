@@ -11,7 +11,6 @@ import org.springframework.test.context.TestPropertySource;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
-
 import com.project.professor.allocation.emanuelaugusto.entity.Teacher;
 
 @DataJpaTest
@@ -36,28 +35,9 @@ public class TeacherRepositoryTest {
 
     @Test
     public void findById() {
-        Teacher teacher = teacherRepository.findById(1L).orElse(null);
+        Teacher teacher = teacherRepository.findById(2L).orElse(null);
 
-    }
-
-    @Test
-    public void findByProfessorId() {
-        // Arrange
-
-        // Act
-
-        // Print
-
-    }
-
-    @Test
-    public void findByCourseId() {
-        // Arrange
-
-        // Act
-
-        // Print
-
+        System.out.println(teacher.toString());
     }
 
     @Test
@@ -77,25 +57,24 @@ public class TeacherRepositoryTest {
 
     @Test
     public void save_update() throws ParseException {
-        // Arrange
+        Teacher teacher = teacherRepository.findById(2L).orElse(null);
 
-        // Act
+        teacher.setId(teacher.getId());
+        teacher.setCpf("13455369413");
 
-        // Print
+        teacher = teacherRepository.save(teacher);
 
     }
 
     @Test
     public void deleteById() {
-        // Arrange
-
-        // Act
+        teacherRepository.deleteById(3L);
 
     }
 
     @Test
     public void deleteAll() {
-        // Act
+        teacherRepository.deleteAllInBatch();
 
     }
 }
