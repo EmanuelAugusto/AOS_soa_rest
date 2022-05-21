@@ -1,7 +1,6 @@
 package com.project.professor.allocation.emanuelaugusto.service;
 
 import org.springframework.stereotype.Service;
-import com.project.professor.allocation.emanuelaugusto.repository.AllocationRepository;
 import com.project.professor.allocation.emanuelaugusto.repository.CourseRepository;
 import com.project.professor.allocation.emanuelaugusto.entity.Course;
 import java.util.List;
@@ -10,12 +9,12 @@ import java.util.List;
 public class CourseService {
 
     private final CourseRepository courseRepository;
-    private final AllocationRepository allocationRepository;
+    // private final AllocationRepository allocationRepository;
 
-    public CourseService(CourseRepository courseRepository, AllocationRepository allocationRepository) {
+    public CourseService(CourseRepository courseRepository) {
         super();
         this.courseRepository = courseRepository;
-        this.allocationRepository = allocationRepository;
+        // this.allocationRepository = allocationRepository;
     }
 
     public Course findById(Long id) {

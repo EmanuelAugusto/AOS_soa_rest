@@ -1,7 +1,6 @@
 package com.project.professor.allocation.emanuelaugusto.service;
 
 import com.project.professor.allocation.emanuelaugusto.repository.AllocationRepository;
-import com.project.professor.allocation.emanuelaugusto.repository.CourseRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.text.SimpleDateFormat;
@@ -11,15 +10,14 @@ import com.project.professor.allocation.emanuelaugusto.entity.Allocation;
 public class AllocationService {
 
 	private final AllocationRepository allocationRepository;
-	private final CourseRepository courseRepository;
-	private final TeacherService teacherService;
+	// private final CourseRepository courseRepository;
+	// private final TeacherService teacherService;
 
-	public AllocationService(AllocationRepository allocationRepository, CourseRepository courseRepository,
-			TeacherService teacherService) {
+	public AllocationService(AllocationRepository allocationRepository) {
 		super();
 		this.allocationRepository = allocationRepository;
-		this.courseRepository = courseRepository;
-		this.teacherService = teacherService;
+		// this.courseRepository = courseRepository;
+		// this.teacherService = teacherService;
 	}
 
 	public List<Allocation> findAll() {
@@ -40,10 +38,10 @@ public class AllocationService {
 		List<Allocation> allocationget = allocationRepository.findConflict(allocation.getDay().toString(),
 				sdf.format(allocation.getStart().getTime()), sdf.format(allocation.getEnd().getTime()),
 				allocation.getTeacherId());
-		
-		if(allocationget.isEmpty()){
+
+		if (allocationget.isEmpty()) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 

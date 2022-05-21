@@ -20,7 +20,6 @@ public class TeacherController {
 
     public TeacherController(TeacherService teacherService) {
         super();
-
         this.teacherService = teacherService;
     }
 
