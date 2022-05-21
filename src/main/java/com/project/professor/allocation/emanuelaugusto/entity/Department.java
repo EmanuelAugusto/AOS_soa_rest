@@ -3,6 +3,8 @@ package com.project.professor.allocation.emanuelaugusto.entity;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +16,7 @@ import java.util.List;
 @Table(name = "department")
 public class Department {
 
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -21,6 +24,7 @@ public class Department {
 	@Column(name = "name", unique = true, nullable = false)
 	private String name;
 
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	@OneToMany(mappedBy = "department")
 	private List<Teacher> teachers;
 

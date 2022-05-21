@@ -10,11 +10,13 @@ import javax.persistence.Table;
 import java.util.List;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "course")
 public class Course {
 
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -22,6 +24,7 @@ public class Course {
 	@Column(name = "name", nullable = false)
 	private String name;
 
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	@OneToMany(mappedBy = "course")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private List<Allocation> allocations;

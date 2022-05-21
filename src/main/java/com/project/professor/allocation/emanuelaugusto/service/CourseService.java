@@ -18,27 +18,33 @@ public class CourseService {
         this.allocationRepository = allocationRepository;
     }
 
-    public Course findById(Long id){
-        Course course  = courseRepository.findById(id).orElse(null);
+    public Course findById(Long id) {
+        Course course = courseRepository.findById(id).orElse(null);
 
-        return course; 
+        return course;
     }
 
+    public List<Course> findAll(String name) {
 
-    public List<Course> findAll(){
-        List<Course> courses = courseRepository.findAll();
+        if (name == null) {
+            List<Course> courses = courseRepository.findAll();
+            return courses;
 
-        return courses;
+        } else {
+            List<Course> courses = courseRepository.findByNameContainingIgnoreCase(name);
+            return courses;
+        }
+
     }
 
-    public Course saveOrUpdate(Course course){
-      Course courseCreateOrUpdate = courseRepository.save(course);
+    public Course saveOrUpdate(Course course) {
+        Course courseCreateOrUpdate = courseRepository.save(course);
 
-      return courseCreateOrUpdate;
+        return courseCreateOrUpdate;
     }
 
-    public void deleteById(Long id){
-        
+    public void deleteById(Long id) {
+
         courseRepository.deleteById(id);
     }
 }

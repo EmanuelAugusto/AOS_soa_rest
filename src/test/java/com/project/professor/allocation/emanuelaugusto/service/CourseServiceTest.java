@@ -18,7 +18,7 @@ public class CourseServiceTest {
     @Test
     public void findAll() {
 
-        List<Course> courses = courseService.findAll();
+        List<Course> courses = courseService.findAll(null);
 
         for (Course course : courses) {
             System.out.println(course + "\n");

@@ -15,10 +15,14 @@ import javax.persistence.TemporalType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "allocation")
 public class Allocation {
 
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -41,10 +45,14 @@ public class Allocation {
 	@Column(name = "courseId", nullable = false)
 	private Long courseId;
 
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
+	@JsonIgnoreProperties({ "allocations" })
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "courseId", nullable = false, insertable = false, updatable = false)
 	private Course course;
 
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
+	@JsonIgnoreProperties({ "allocations" })
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "teacherId", nullable = false, insertable = false, updatable = false)
 	private Teacher teacher;

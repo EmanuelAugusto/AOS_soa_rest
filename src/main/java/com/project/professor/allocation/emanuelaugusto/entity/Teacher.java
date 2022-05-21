@@ -3,15 +3,25 @@ package com.project.professor.allocation.emanuelaugusto.entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import java.util.List;
 
 @Entity
 @Table(name = "teacher")
 public class Teacher {
+
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -25,9 +35,16 @@ public class Teacher {
 	@Column(name = "departmentId", nullable = false)
 	private Long departmentId;
 
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
+	@JsonIgnoreProperties({ "teachers" })
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "departmentId", nullable = false, insertable = false, updatable = false)
 	private Department department;
+
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@OneToMany(mappedBy = "teacher")
+	private List<Allocation> allocations;
 
 	public Long getId() {
 		return id;

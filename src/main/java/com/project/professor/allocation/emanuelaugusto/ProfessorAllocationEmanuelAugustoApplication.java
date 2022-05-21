@@ -14,8 +14,4 @@ public class ProfessorAllocationEmanuelAugustoApplication {
 		SpringApplication.run(ProfessorAllocationEmanuelAugustoApplication.class, args);
 	}
 
-	@GetMapping("/hello")
-	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-		return String.format("TESTANDO", name);
-	}
 }
