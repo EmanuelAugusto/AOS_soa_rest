@@ -82,6 +82,7 @@ public class TeacherController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity update(@PathVariable(name = "teacherId") Long id, @RequestBody Teacher teacher) {
         teacher.setId(id);
+        System.out.println(teacher.toString());
         teacher = teacherService.saveOrUpdate(teacher);
         return new ResponseEntity<>(teacher, HttpStatus.CREATED);
     }
