@@ -18,6 +18,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping(path = "/teachers")
@@ -71,6 +72,18 @@ public class TeacherController {
         } else {
             return new ResponseEntity<>(teacher, HttpStatus.OK);
         }
+    }
+
+    @ApiOperation(value = "Update one teacher")
+    @ApiResponses({
+            @ApiResponse(code = 201, message = "OK")
+    })
+    @PutMapping(path = "/{teacherId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity update(@PathVariable(name = "teacherId") Long id, @RequestBody Teacher teacher) {
+        teacher.setId(id);
+        teacher = teacherService.saveOrUpdate(teacher);
+        return new ResponseEntity<>(teacher, HttpStatus.CREATED);
     }
 
 }

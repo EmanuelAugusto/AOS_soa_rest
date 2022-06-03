@@ -12,14 +12,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.project.professor.allocation.emanuelaugusto.entity.Allocation;
 import com.project.professor.allocation.emanuelaugusto.service.AllocationService;
-
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import com.project.professor.allocation.emanuelaugusto.Exception.ExceptionConflictHours;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping(path = "/allocations")
@@ -71,6 +70,26 @@ public class AllocationController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity save(@RequestBody Allocation allocation) {
         try {
+            allocation = allocationService.save(allocation);
+            return new ResponseEntity<>(allocation, HttpStatus.CREATED);
+        } catch (Exception e) {
+
+            ExceptionConflictHours exception = new ExceptionConflictHours();
+            exception.setMessage(e.getMessage());
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception);
+        }
+    }
+
+    @ApiOperation(value = "Update one allocation")
+    @ApiResponses({
+            @ApiResponse(code = 201, message = "OK")
+    })
+    @PutMapping(path = "/{allocationId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity update(@PathVariable(name = "allocationId") Long id, @RequestBody Allocation allocation) {
+        try {
+            allocation.setId(id);
             allocation = allocationService.save(allocation);
             return new ResponseEntity<>(allocation, HttpStatus.CREATED);
         } catch (Exception e) {

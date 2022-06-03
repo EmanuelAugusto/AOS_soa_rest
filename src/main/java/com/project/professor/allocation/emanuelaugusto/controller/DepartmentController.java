@@ -17,6 +17,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping(path = "/departaments")
@@ -70,6 +71,18 @@ public class DepartmentController {
         } else {
             return new ResponseEntity<>(department, HttpStatus.OK);
         }
+    }
+
+    @ApiOperation(value = "Update one department")
+    @ApiResponses({
+            @ApiResponse(code = 201, message = "OK")
+    })
+    @PutMapping(path = "/{departmentId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity update(@PathVariable(name = "departmentId") Long id, @RequestBody Department department) {
+        department.setId(id);
+        department = departmentService.saveOrUpdate(department);
+        return new ResponseEntity<>(department, HttpStatus.CREATED);
     }
 
 }
