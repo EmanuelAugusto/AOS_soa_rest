@@ -14,7 +14,7 @@ public interface AllocationRepository extends JpaRepository<Allocation, Long> {
 
     List<Allocation> findByCourseId(Long courseId);
 
-    @Query(value = "SELECT * FROM allocation a WHERE a.day = :day AND a.start >= :start AND a.end <= :end AND a.teacher_id = :teacherId", nativeQuery = true)
+    @Query(value = "SELECT * FROM allocation a WHERE a.day = :day AND CAST(a.start_hour as VARCHAR) >= :start AND CAST(a.end_hour as VARCHAR) <= :end AND a.teacher_id = :teacherId", nativeQuery = true)
     List<Allocation> findConflict(@Param("day") String day, @Param("start") String start, @Param("end") String end,
             @Param("teacherId") Long teacherId);
 }

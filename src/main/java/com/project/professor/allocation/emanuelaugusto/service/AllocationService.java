@@ -36,6 +36,8 @@ public class AllocationService {
 	private Boolean checkConflictOfAllocation(Allocation allocation) {
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 
+		System.out.println(sdf.format(allocation.getStart().getTime()));
+		System.out.println(allocation.getEnd().toString());
 		List<Allocation> allocationget = allocationRepository.findConflict(allocation.getDay().toString(),
 				sdf.format(allocation.getStart().getTime()), sdf.format(allocation.getEnd().getTime()),
 				allocation.getTeacherId());
