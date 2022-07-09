@@ -41,7 +41,7 @@ public class Allocation {
 	@JsonFormat(pattern = "HH:mmZ")
 	@JsonSerialize(using = DateSerializer.class)
 	@JsonDeserialize(using = DateDeserializers.DateDeserializer.class)
-	@Column(name = "start", nullable = false)
+	@Column(name = "startHour", nullable = false)
 	@Temporal(TemporalType.TIME)
 	private Date start;
 
@@ -49,7 +49,7 @@ public class Allocation {
 	@JsonFormat(pattern = "HH:mmZ")
 	@JsonSerialize(using = DateSerializer.class)
 	@JsonDeserialize(using = DateDeserializers.DateDeserializer.class)
-	@Column(name = "end", nullable = false)
+	@Column(name = "endHour", nullable = false)
 	@Temporal(TemporalType.TIME)
 	private Date end;
 
