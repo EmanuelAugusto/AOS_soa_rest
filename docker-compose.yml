@@ -1,6 +1,15 @@
 version: '3.7'
 
 services:
+  #POSTGRESS
+  postgress:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: root
+
   # MYSQL
   database:
     container_name: mysql_db
