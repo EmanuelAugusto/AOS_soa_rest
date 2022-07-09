@@ -19,6 +19,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import com.project.professor.allocation.emanuelaugusto.Exception.ExceptionConflictHours;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 @RestController
 @RequestMapping(path = "/allocations")
@@ -99,6 +100,12 @@ public class AllocationController {
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception);
         }
+    }
+
+    @DeleteMapping(path = "/{allocationId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public void delete(@PathVariable(name = "allocationId") Long allocationId) {
+        allocationService.deleteById(allocationId);
     }
 
 }
